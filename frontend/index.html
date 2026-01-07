@@ -1,1 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ClipGen AI • Viral Shorts Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top, #0a1220, #05080c);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 1100px;
+    width: 100%;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(0,234,255,0.15);
+    color: #00eaff;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    width: fit-content;
+}
+
+h1 {
+    font-size: 48px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+h1 span {
+    color: #00eaff;
+    text-shadow: 0 0 18px #00eaff;
+}
+
+.subtitle {
+    margin-top: 15px;
+    font-size: 18px;
+    opacity: 0.8;
+    max-width: 480px;
+}
+
+.features {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 12px;
+}
+
+.feature {
+    background: #0d1117;
+    border: 1px solid #00eaff22;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.right {
+    background: #0d1117;
+    border-radius: 22px;
+    padding: 35px;
+    box-shadow: 0 0 40px rgba(0,234,255,0.15);
+    border: 1px solid #00eaff22;
+}
+
+.right h2 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.right p {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-bottom: 18px;
+}
+
+input {
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    border: 2px solid #00eaff;
+    background: #000;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #00eaff, #00bcd4);
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    color: black;
+    box-shadow: 0 0 18px rgba(0,234,255,0.6);
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0,234,255,0.9);
+}
+
+#status {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #ffd86b;
+    font-weight: 600;
+    min-height: 20px;
+}
+
+.footer-note {
+    margin-top: 18px;
+    font-size: 12px;
+    opacity: 0.5;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    h1 {
+        font-size: 40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT SIDE -->
+    <div class="left">
+        <div class="badge">🚀 AI POWERED VIDEO TOOL</div>
+
+        <h1>
+            Turn Long Videos<br>
+            into <span>Viral Shorts</span>
+        </h1>
+
+        <p class="subtitle">
+            ClipGen AI automatically finds the most exciting moments
+            from long videos and converts them into vertical viral clips.
+        </p>
+
+        <div class="features">
+            <div class="feature">🎯 Smart Peak Detection</div>
+            <div class="feature">🎧 Audio + Motion Analysis</div>
+            <div class="feature">📱 Shorts & Reels Ready</div>
+            <div class="feature">⚡ Fully Automatic</div>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+        <h2>Generate Clips</h2>
+        <p>Paste a YouTube video link below and let our AI do the magic.</p>
+
+        <input id="videoUrl" type="text" placeholder="Paste YouTube link here...">
+
+        <button id="generateBtn">✨ Generate Viral Clips</button>
+
+        <div id="status"></div>
+
+        <div class="footer-note">
+            ⏳ Processing may take 10–15 minutes. Please don’t close the page.
+        </div>
+    </div>
+
+</div>
+
+<script>
+document.getElementById("generateBtn").onclick = async () => {
+    const link = document.getElementById("videoUrl").value;
+    const status = document.getElementById("status");
+    const btn = document.getElementById("generateBtn");
+
+    if (!link) {
+        alert("Please paste a YouTube link");
+        return;
+    }
+
+    status.innerText = "🚀 Starting AI processing...";
+    btn.disabled = true;
+
+    try {
+        const res = await fetch("http://127.0.0.1:8000/process", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ url: link })
+        });
+
+        const data = await res.json();
+
+        if (!data.job_id) {
+            status.innerText = "❌ Error starting job";
+            btn.disabled = false;
+            return;
+        }
+
+        window.location.href = `result.html?job=${data.job_id}`;
+
+    } catch (e) {
+        status.innerText = "❌ Backend not running";
+        btn.disabled = false;
+    }
+};
+</script>
+
+</body>
+</html>
