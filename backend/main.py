@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from backend.downloader import download_video
+from downloader import download_video
 from backend.chunker import detect_peak_segments
 from backend.video_utils import crop_vertical
 
