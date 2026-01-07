@@ -1,4 +1,4 @@
-from backend.transcriber import transcribe_video
+from transcriber import transcribe_video
 
 
 def collect_scores(peaks):
