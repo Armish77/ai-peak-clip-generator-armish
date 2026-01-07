@@ -6,15 +6,11 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from downloader import download_video
-from backend.chunker import detect_peak_segments
-from backend.video_utils import crop_vertical
+from chunker import detect_peak_segments
+from video_utils import crop_vertical, burn_caption
 
-from backend.ai_pipeline import get_captions_for_video
-from backend.video_utils import burn_caption
-from backend import video_utils as vu
-
-
-
+from ai_pipeline import get_captions_for_video
+import video_utils as vu
 
 
 # ---------- APP ----------
