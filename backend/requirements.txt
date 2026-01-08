@@ -1,6 +1,9 @@
 fastapi
-uvicorn
-yt-dlp
-librosa
-numpy
-opencv-python
+uvicorn[standard]
+gunicorn
+python-multipart
+moviepy
+opencv-python-headless
+# Add any other libraries you used, like:
+# numpy
+# python-dotenv
