@@ -7,181 +7,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* ... (All your existing CSS styles remain exactly the same) ... */
 *{box-sizing:border-box}
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:'Poppins',sans-serif;
-  background:radial-gradient(circle at top,#0a1220,#05080c);
-  color:#fff;
-  overflow-y: auto;
-}
-
-/* Back button */
-a.back{
-  color:#00eaff;
-  text-decoration:none;
-  font-weight:600;
-  position:fixed;
-  top:18px;
-  left:18px;
-  background:#0d1117;
-  padding:8px 14px;
-  border-radius:999px;
-  border:1px solid #00eaff22;
-  z-index:10;
-}
-
-.container{
-  max-width:1200px;
-  margin:0 auto;
-  padding:24px;
-}
-
-/* ---------- LOADER ---------- */
-.loader{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  text-align:center;
-  padding:20px;
-  transform: translateZ(0);
-}
-
-/* GPU friendly spinner */
-.ring{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:conic-gradient(#00eaff,#00bcd4,#00eaff);
-  -webkit-mask:radial-gradient(circle,transparent 60%,#000 61%);
-  mask:radial-gradient(circle,transparent 60%,#000 61%);
-  animation:spin 1.6s linear infinite;
-  will-change:transform;
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg)}
-}
-
-.loader-title{
-  margin-top:22px;
-  font-size:30px;
-  color:#00eaff;
-  text-shadow:0 0 18px #00eaff;
-}
-
-#loaderText{
-  font-size:18px;
-  opacity:.9;
-  margin-top:6px;
-  transition:opacity .4s ease, transform .4s ease;
-}
-
-.text-out{
-  opacity:0;
-  transform:translateY(6px);
-}
-.text-in{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.loader-warn{
-  font-size:16px;
-  color:#ffd86b;
-  font-weight:600;
-  margin-top:10px;
-}
-
-.loader-sub{
-  font-size:14px;
-  opacity:.6;
-  max-width:520px;
-  margin-top:10px;
-}
-
-/* ---------- RESULTS ---------- */
-.header{
-  display:none;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-top:80px;
-  padding:0 8px;
-}
-.header h2{
-  margin:0;
-  font-size:28px;
-  text-shadow:0 0 14px #00eaff;
-}
-.note{
-  font-size:13px;
-  opacity:.75;
-  border:1px solid #00eaff22;
-  padding:6px 10px;
-  border-radius:999px;
-  background:#0d1117;
-}
-
-.grid{
-  display:none;
-  margin-top:18px;
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:18px;
-  padding:8px;
-}
-
-.card{
-  background:#0d1117;
-  border:1px solid #00eaff22;
-  border-radius:16px;
-  padding:14px;
-  box-shadow:0 0 22px rgba(0,234,255,.15);
-}
-
-.card video{
-  width:100%;
-  border-radius:12px;
-  background:#000;
-}
-
-.actions{
-  display:flex;
-  gap:10px;
-  margin-top:10px;
-}
-
-.btn{
-  flex:1;
-  text-align:center;
-  text-decoration:none;
-  background:linear-gradient(135deg,#00eaff,#00bcd4);
-  color:#000;
-  padding:10px;
-  border-radius:10px;
-  font-weight:700;
-  box-shadow:0 0 14px rgba(0,234,255,.45);
-}
-
-.badge{
-  font-size:12px;
-  opacity:.7;
-  margin-top:6px;
-}
-
-/* ---------- RESPONSIVE ---------- */
-@media(max-width:700px){
-  .loader-title{font-size:26px}
-  .header h2{font-size:24px}
-  .note{
-    width:150px;
-    padding:20px;
-  }
-}
+body{ margin:0; min-height:100vh; font-family:'Poppins',sans-serif; background:radial-gradient(circle at top,#0a1220,#05080c); color:#fff; overflow-y: auto; }
+a.back{ color:#00eaff; text-decoration:none; font-weight:600; position:fixed; top:18px; left:18px; background:#0d1117; padding:8px 14px; border-radius:999px; border:1px solid #00eaff22; z-index:10; }
+.container{ max-width:1200px; margin:0 auto; padding:24px; }
+.loader{ min-height:100vh; display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center; padding:20px; transform: translateZ(0); }
+.ring{ width:120px; height:120px; border-radius:50%; background:conic-gradient(#00eaff,#00bcd4,#00eaff); -webkit-mask:radial-gradient(circle,transparent 60%,#000 61%); mask:radial-gradient(circle,transparent 60%,#000 61%); animation:spin 1.6s linear infinite; }
+@keyframes spin{ to{transform:rotate(360deg)} }
+.loader-title{ margin-top:22px; font-size:30px; color:#00eaff; text-shadow:0 0 18px #00eaff; }
+#loaderText{ font-size:18px; opacity:.9; margin-top:6px; transition:opacity .4s ease, transform .4s ease; }
+.text-out{ opacity:0; transform:translateY(6px); }
+.text-in{ opacity:1; transform:translateY(0); }
+.loader-warn{ font-size:16px; color:#ffd86b; font-weight:600; margin-top:10px; }
+.loader-sub{ font-size:14px; opacity:.6; max-width:520px; margin-top:10px; }
+.header{ display:none; align-items:center; justify-content:space-between; gap:12px; margin-top:80px; padding:0 8px; }
+.header h2{ margin:0; font-size:28px; text-shadow:0 0 14px #00eaff; }
+.note{ font-size:13px; opacity:.75; border:1px solid #00eaff22; padding:6px 10px; border-radius:999px; background:#0d1117; }
+.grid{ display:none; margin-top:18px; display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; padding:8px; }
+.card{ background:#0d1117; border:1px solid #00eaff22; border-radius:16px; padding:14px; box-shadow:0 0 22px rgba(0,234,255,.15); }
+.card video{ width:100%; border-radius:12px; background:#000; }
+.actions{ display:flex; gap:10px; margin-top:10px; }
+.btn{ flex:1; text-align:center; text-decoration:none; background:linear-gradient(135deg,#00eaff,#00bcd4); color:#000; padding:10px; border-radius:10px; font-weight:700; box-shadow:0 0 14px rgba(0,234,255,.45); }
+.badge{ font-size:12px; opacity:.7; margin-top:6px; }
+@media(max-width:700px){ .loader-title{font-size:26px} .header h2{font-size:24px} .note{ width:150px; padding:20px; } }
 </style>
 </head>
 
@@ -189,35 +38,26 @@ a.back{
 
 <a href="index.html" class="back">← Back</a>
 
-<!-- LOADER -->
 <div class="loader" id="loader">
   <div class="ring"></div>
   <div class="loader-title">Finding Peak Moments 🚀</div>
-
-  <div id="loaderText" class="text-in">
-    ⏳ This may take 10–15 minutes depending on video length
-  </div>
-
-  <div class="loader-warn">
-    ❗ Please don’t close or refresh this page
-  </div>
-
-  <div class="loader-sub">
-    Our AI is analyzing audio, motion & emotions to find the best moments ✨
-  </div>
+  <div id="loaderText" class="text-in">⏳ This may take 10–15 minutes depending on video length</div>
+  <div class="loader-warn">❗ Please don’t close or refresh this page</div>
+  <div class="loader-sub">Our AI is analyzing audio, motion & emotions to find the best moments ✨</div>
 </div>
 
-<!-- RESULTS -->
 <div class="container">
   <div class="header" id="header">
     <h2 id="title">Your Clips 🎉</h2>
     <div class="note" id="note">AI • Audio + Motion Analysis</div>
   </div>
-
   <div class="grid" id="clips"></div>
 </div>
 
 <script>
+/* ---------- CONFIG ---------- */
+const API_BASE_URL = "https://ai-peak-clip-generator-armish.onrender.com";
+
 /* ---------- SMOOTH LOADER TEXT ROTATION ---------- */
 const loaderMsgs=[
   "⏳ This may take 10–15 minutes depending on video length",
@@ -231,10 +71,8 @@ let mi=0;
 setInterval(()=>{
   const el=document.getElementById("loaderText");
   if(!el) return;
-
   el.classList.remove("text-in");
   el.classList.add("text-out");
-
   setTimeout(()=>{
     el.innerText=loaderMsgs[mi%loaderMsgs.length];
     el.classList.remove("text-out");
@@ -254,39 +92,48 @@ const title=document.getElementById("title");
 const note=document.getElementById("note");
 
 const poll=setInterval(async()=>{
-  const res=await fetch(`http://127.0.0.1:8000/status/${job}`);
-  const data=await res.json();
+  try {
+    const res = await fetch(`${API_BASE_URL}/status/${job}`);
+    const data = await res.json();
 
-  if(!data.clips || data.clips.length===0) return;
+    // If no clips yet, keep polling
+    if(!data.clips || data.clips.length === 0) return;
 
-  clearInterval(poll);
+    // Stop polling once we find clips
+    clearInterval(poll);
 
-  loader.style.display="none";
-  header.style.display="flex";
-  grid.style.display="grid";
+    loader.style.display="none";
+    header.style.display="flex";
+    grid.style.display="grid";
 
-  if(data.count<3){
-    title.innerText=`⚠️ Only ${data.count} Major Peak Moment Found`;
-    note.innerText=data.message || "Limited peaks in this video";
-  }else{
-    title.innerText="Your Clips 🎉";
-    note.innerText="AI • Audio + Motion Analysis";
+    if(data.count < 3){
+      title.innerText = `⚠️ Only ${data.count} Major Peak Moment Found`;
+      note.innerText = data.message || "Limited peaks in this video";
+    } else {
+      title.innerText = "Your Clips 🎉";
+      note.innerText = "AI • Audio + Motion Analysis";
+    }
+
+    grid.innerHTML="";
+    data.clips.forEach((clipPath, i)=>{
+      // clipPath is something like "/outputs/uuid_0.mp4"
+      const videoUrl = `${API_BASE_URL}${clipPath}?t=${Date.now()}`;
+      
+      grid.innerHTML += `
+        <div class="card">
+          <video controls src="${videoUrl}"></video>
+          <div class="actions">
+            <a class="btn" href="${videoUrl}" download target="_blank">
+              Download Clip ${i+1}
+            </a>
+          </div>
+          <div class="badge">Auto-generated by ClipGen AI</div>
+        </div>`;
+    });
+  } catch (err) {
+    console.error("Polling error:", err);
   }
-
-  grid.innerHTML="";
-  data.clips.forEach((clip,i)=>{
-    grid.innerHTML+=`
-      <div class="card">
-        <video controls src="http://127.0.0.1:8000/outputs/${clip}?t=${Date.now()}"></video>
-        <div class="actions">
-          <a class="btn" href="http://127.0.0.1:8000/outputs/${clip}?t=${Date.now()}" download>
-            Download Clip ${i+1}
-          </a>
-        </div>
-        <div class="badge">Auto-generated by ClipGen AI</div>
-      </div>`;
-  });
-},3000);
+}, 5000); // Polling every 5 seconds to be gentle on Render Free Tier
 </script>
 
 </body>
